@@ -1,10 +1,19 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
+    {% load django_bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
     <meta charset="UTF-8">
     <title>{% block title %}Main Page{% endblock %}</title>
 </head>
-<body>
-    {% block main %}{% endblock %}
+<body class="d-flex flex-column min-vh-100">
+    {% block header %}
+        {% include "navigation.html" %}
+    {% endblock %}
+        {% block main %}{% endblock %}
+    {% block footer %}
+        {% include "footer.html" %}
+    {% endblock %}
 </body>
 </html>

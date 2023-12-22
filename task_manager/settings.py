@@ -27,7 +27,6 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv("DEBUG", "False") == "True"
-print(type(DEBUG))
 
 ALLOWED_HOSTS = [os.getenv("ALLOWED_HOSTS")]
 
@@ -41,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'task_manager'
+    'task_manager',
+    'django_bootstrap5',
 ]
 
 MIDDLEWARE = [
