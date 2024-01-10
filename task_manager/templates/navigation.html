@@ -1,13 +1,13 @@
 {% load i18n %}
 <nav class="navbar navbar-expand-lg navbar-light bg-light px-3">
-  <a class="navbar-brand" href="/">Менеджер задач</a>
+  <a class="navbar-brand" href="/">{% trans 'Task_manager' %}</a>
   <button class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-expanded="false">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="navbar-collapse collapse" id="navbarToggleExternalContent" >
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" href="/#">{% trans 'Users' %}</a>
+        <a class="nav-link" href="{% url 'users' %}">{% trans 'Users' %}</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="/#">{% trans 'sign_in' %}</a>
