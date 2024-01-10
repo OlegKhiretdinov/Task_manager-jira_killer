@@ -11,7 +11,9 @@
     {% block header %}
         {% include "navigation.html" %}
     {% endblock %}
+    <div class="container wrapper flex-grow-1 mt-3">
         {% block main %}{% endblock %}
+    </div>
     {% block footer %}
         {% include "footer.html" %}
     {% endblock %}

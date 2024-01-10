@@ -4,14 +4,12 @@
 {% load django_bootstrap5 %}
 
 {% block main %}
-    <div class="container wrapper flex-grow-1 mt-3">
-        <div class="card">
-            <div class="card-body p-5 bg-light">
-                <div class="display-4">Привет от Хекслета!</div>
-                <p class="lead">Практические курсы по программированию</p>
-                <hr>
-                {% bootstrap_button "Узнать больше" button_type="link" href="https://ru.hexlet.io" %}
-            </div>
+    <div class="card">
+        <div class="card-body p-5 bg-light">
+            <div class="display-4">Привет от Хекслета!</div>
+            <p class="lead">Практические курсы по программированию</p>
+            <hr>
+            {% bootstrap_button "Узнать больше" button_type="link" href="https://ru.hexlet.io" %}
         </div>
     </div>
 {% endblock %}

@@ -1,41 +1,36 @@
 {% extends "main_layout.html" %}
 {% load i18n %}
-{% block title %}Task Manager{% endblock %}
+{% block title %}{% trans 'Users_list' %}{% endblock %}
 {% load django_bootstrap5 %}
 
 {% block main %}
-    <div class="container wrapper flex-grow-1 mt-3">
-        <div class="container wrapper flex-grow-1">
-            <h1>{% trans 'Users_list' %}</h1>
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th>{% translate 'id' %}</th>
-                        <th>{% translate 'user_name' %}</th>
-                        <th>{% translate 'full_name' %}</th>
-                        <th>{% translate 'date_joined' %}</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for user in users_list %}
-                    <tr>
-                        <td>{{user.id}}</td>
-                        <td>{{user.username}}</td>
-                        <td>{{user.first_name}} {{user.last_name}}</td>
-                        <td>{{user.date_joined}}</td>
-                        <td>
-                            <a href="{% url 'users' %}">{% translate 'remove' %}</a>
-                            {{user.id}}
-                            <br />
-                            <a href="{% url 'users' %}">{% translate 'update' %}</a>
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-
-        </div>
-    </div>
+    <h1>{% trans 'Users_list' %}</h1>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>{% translate 'id' %}</th>
+                <th>{% translate 'user_name' %}</th>
+                <th>{% translate 'full_name' %}</th>
+                <th>{% translate 'date_joined' %}</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users_list %}
+            <tr>
+                <td>{{user.id}}</td>
+                <td>{{user.username}}</td>
+                <td>{{user.first_name}} {{user.last_name}}</td>
+                <td>{{user.date_joined}}</td>
+                <td>
+                    <a href="{% url 'users' %}">{% translate 'remove' %}</a>
+                    {{user.id}}
+                    <br />
+                    <a href="{% url 'users' %}">{% translate 'update' %}</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}
 
