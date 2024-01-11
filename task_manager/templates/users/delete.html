@@ -1,0 +1,17 @@
+{% extends "main_layout.html" %}
+{% load i18n %}
+{% block title %}{% translate 'deleting_user' %}{% endblock %}
+{% load django_bootstrap5 %}
+
+{% block main %}
+    <h1>{% trans 'deleting_user' %}</h1>
+    <p>
+    {% translate 'delete_user_text' %} {{full_user_name}}
+    </p>
+
+    <form action="{% url 'delete_user' pk=id %}" method="post">
+        {% csrf_token %}
+        {% translate 'delete_button' as button %}
+        {% bootstrap_button button button_class="btn-danger" button_type="submit" %}
+    </form>
+{% endblock %}

@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
 from django.contrib.auth.models import User
 
@@ -25,5 +25,16 @@ class CreateUserView(View):
             form.save()
             return redirect('users')
 
-        # return redirect('create_user')
         return render(request, 'users/create.html', {'form': form})
+
+
+# Удаление пользователя
+class DeleteUserView(View):
+    def get(self, request, *args, **kwargs):
+        user = get_object_or_404(User, id=kwargs.get('pk'))
+        return render(request, 'users/delete.html', {"full_user_name": user.get_full_name(), "id": user.id})
+
+    def post(self, request, *args, **kwargs):
+        user = get_object_or_404(User, id=kwargs.get('pk'))
+        user.delete()
+        return redirect('users')

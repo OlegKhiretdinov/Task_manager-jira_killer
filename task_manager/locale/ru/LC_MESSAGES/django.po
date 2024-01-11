@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-10 12:52+0300\n"
+"POT-Creation-Date: 2024-01-10 19:47+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -33,13 +33,25 @@ msgid "sign_in"
 msgstr "Вход"
 
 #: templates/navigation.html:16 templates/users/create.html:3
-#: templates/users/create.html:8
+#: templates/users/create.html:7 templates/users/delete.html:3
 msgid "sign_up"
 msgstr "Регистрация"
 
-#: templates/users/create.html:5
+#: templates/users/create.html:11
 msgid "Register"
 msgstr "Зарегистрировать"
+
+#: templates/users/delete.html:7
+msgid "deleting_user"
+msgstr "Удаление пользователя"
+
+#: templates/users/delete.html:8
+msgid "delete_user_text"
+msgstr "Вы уверены, что хотите удалить"
+
+#: templates/users/delete.html:11
+msgid "delete_button"
+msgstr "Да, удалить"
 
 #: templates/users/index.html:3 templates/users/index.html:7
 msgid "Users_list"
