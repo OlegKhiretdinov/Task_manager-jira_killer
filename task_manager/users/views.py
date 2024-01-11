@@ -38,3 +38,19 @@ class DeleteUserView(View):
         user = get_object_or_404(User, id=kwargs.get('pk'))
         user.delete()
         return redirect('users')
+
+# Редактирование пользователей
+class UpdateUserView(View):
+    def get(self, request, *args, **kwargs):
+        user = get_object_or_404(User, id=kwargs.get('pk'))
+        form = CreateUserForm(instance=user)
+        return render(request, 'users/update.html', {'form': form, "id": user.id})
+
+    def post(self, request, *args, **kwargs):
+        user = get_object_or_404(User, id=kwargs.get('pk'))
+        form = CreateUserForm(request.POST, instance=user)
+
+        if form.is_valid():
+            form.save()
+            return redirect('users')
+        return render(request, 'users/update.html', {'form': form, "id": user.id})
