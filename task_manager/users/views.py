@@ -8,7 +8,6 @@ from task_manager.users.forms import CreateUserForm
 # Список пользователей
 class IndexView(View):
     def get(self, request):
-        print(request.user.id)
         users_list = User.objects.all()
         return render(request, 'users/index.html', {'users_list': users_list})
 

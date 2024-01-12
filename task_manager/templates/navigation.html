@@ -10,10 +10,16 @@
         <a class="nav-link" href="{% url 'users' %}">{% trans 'Users' %}</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/#">{% trans 'sign_in' %}</a>
+        <a class="nav-link" href="{% url 'login' %}">{% trans 'sign_in' %}</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="{% url 'create_user' %}">{% trans 'sign_up' %}</a>
+      </li>
+      <li class="nav-item">
+        <form method="POST", action="{% url 'logout' %}">
+          {% csrf_token %}
+          <button class="btn btn-dangerbtn btn-danger">{% translate 'logout' %}</button>
+        </form>
       </li>
     </ul>
   </div>

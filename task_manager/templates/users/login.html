@@ -1,0 +1,14 @@
+{% extends "main_layout.html" %}
+{% load i18n %}
+{% block title %}{% translate 'sign_up' %}{% endblock %}
+{% load django_bootstrap5 %}
+
+{% block main %}
+    <h1>{% trans 'sign_in' %}</h1>
+    <form method="post">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        {% translate 'login' as button %}
+        {% bootstrap_button button button_type="submit" %}
+    </form>
+{% endblock %}

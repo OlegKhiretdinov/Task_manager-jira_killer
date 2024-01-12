@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-10 19:47+0300\n"
+"POT-Creation-Date: 2024-01-12 17:39+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,28 +28,32 @@ msgstr "Менеджер задач"
 msgid "Users"
 msgstr "Пользователи"
 
-#: templates/navigation.html:13
+#: templates/navigation.html:13 templates/users/login.html:7
 msgid "sign_in"
 msgstr "Вход"
 
 #: templates/navigation.html:16 templates/users/create.html:3
-#: templates/users/create.html:7 templates/users/delete.html:3
+#: templates/users/create.html:7 templates/users/login.html:3
 msgid "sign_up"
 msgstr "Регистрация"
+
+#: templates/navigation.html:21
+msgid "logout"
+msgstr "Выход"
 
 #: templates/users/create.html:11
 msgid "Register"
 msgstr "Зарегистрировать"
 
-#: templates/users/delete.html:7
+#: templates/users/delete.html:3 templates/users/delete.html:7
 msgid "deleting_user"
 msgstr "Удаление пользователя"
 
-#: templates/users/delete.html:8
+#: templates/users/delete.html:9
 msgid "delete_user_text"
 msgstr "Вы уверены, что хотите удалить"
 
-#: templates/users/delete.html:11
+#: templates/users/delete.html:14
 msgid "delete_button"
 msgstr "Да, удалить"
 
@@ -77,6 +81,14 @@ msgstr "Дата создания"
 msgid "remove"
 msgstr "Удалить"
 
-#: templates/users/index.html:29
-msgid "update"
-msgstr "Обновить"
+#: templates/users/index.html:28 templates/users/update.html:11
+msgid "change"
+msgstr "Изменить"
+
+#: templates/users/login.html:11
+msgid "login"
+msgstr "Войти"
+
+#: templates/users/update.html:3 templates/users/update.html:7
+msgid "change_user"
+msgstr "Изменение пользователя"
