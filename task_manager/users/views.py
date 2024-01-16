@@ -1,8 +1,10 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
 from django.contrib.auth.models import User
+from django.contrib import messages
+from django.views.generic.edit import UpdateView
 
-from task_manager.users.forms import CreateUserForm
+from task_manager.users.forms import CreateUserForm, UpdateUserForm
 
 
 # Список пользователей
@@ -23,7 +25,8 @@ class CreateUserView(View):
 
         if form.is_valid():
             form.save()
-            return redirect('users')
+            messages.add_message(request, messages.INFO, 'DAAAA')
+            return redirect('login')
 
         return render(request, 'users/create.html', {'form': form})
 
@@ -39,16 +42,17 @@ class DeleteUserView(View):
         user.delete()
         return redirect('users')
 
+
 # Редактирование пользователей
 class UpdateUserView(View):
     def get(self, request, *args, **kwargs):
         user = get_object_or_404(User, id=kwargs.get('pk'))
-        form = CreateUserForm(instance=user)
+        form = UpdateUserForm(instance=user)
         return render(request, 'users/update.html', {'form': form, "id": user.id})
 
     def post(self, request, *args, **kwargs):
         user = get_object_or_404(User, id=kwargs.get('pk'))
-        form = CreateUserForm(request.POST, instance=user)
+        form = UpdateUserForm(request.POST, instance=user)
 
         if form.is_valid():
             form.save()
