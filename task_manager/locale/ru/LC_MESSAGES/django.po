@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-12 17:39+0300\n"
+"POT-Creation-Date: 2024-01-16 18:41+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,16 +28,16 @@ msgstr "Менеджер задач"
 msgid "Users"
 msgstr "Пользователи"
 
-#: templates/navigation.html:13 templates/users/login.html:7
+#: templates/navigation.html:14 templates/users/login.html:7
 msgid "sign_in"
 msgstr "Вход"
 
-#: templates/navigation.html:16 templates/users/create.html:3
+#: templates/navigation.html:17 templates/users/create.html:3
 #: templates/users/create.html:7 templates/users/login.html:3
 msgid "sign_up"
 msgstr "Регистрация"
 
-#: templates/navigation.html:21
+#: templates/navigation.html:24
 msgid "logout"
 msgstr "Выход"
 
@@ -92,3 +92,11 @@ msgstr "Войти"
 #: templates/users/update.html:3 templates/users/update.html:7
 msgid "change_user"
 msgstr "Изменение пользователя"
+
+#: views.py:8
+msgid "success_logout_message"
+msgstr "Вы разлогинены"
+
+#: views.py:14
+msgid "success_login_message"
+msgstr "Вы залогинены"
