@@ -1,10 +1,14 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect
 from django.views import View
 from django.contrib.auth.models import User
 from django.contrib import messages
-from django.views.generic.edit import UpdateView
+from django.utils.translation import gettext as _
+from django.views.generic.edit import UpdateView, DeleteView
+from django.urls import reverse_lazy
+from django.contrib.messages.views import SuccessMessageMixin
 
-from task_manager.users.forms import CreateUserForm, UpdateUserForm
+from task_manager.users.forms import CreateUserForm
+from task_manager.utils import UnauthenticatedRedirectMixin, only_owner_access_decorator
 
 
 # Список пользователей
@@ -25,36 +29,31 @@ class CreateUserView(View):
 
         if form.is_valid():
             form.save()
-            messages.add_message(request, messages.INFO, 'DAAAA')
+            messages.success(request, _("success_signup_message"))
             return redirect('login')
 
         return render(request, 'users/create.html', {'form': form})
 
 
 # Удаление пользователя
-class DeleteUserView(View):
-    def get(self, request, *args, **kwargs):
-        user = get_object_or_404(User, id=kwargs.get('pk'))
-        return render(request, 'users/delete.html', {"full_user_name": user.get_full_name(), "id": user.id})
-
-    def post(self, request, *args, **kwargs):
-        user = get_object_or_404(User, id=kwargs.get('pk'))
-        user.delete()
-        return redirect('users')
+@only_owner_access_decorator("users")
+class DeleteUserView(UnauthenticatedRedirectMixin, SuccessMessageMixin, DeleteView):
+    model = User
+    success_url = reverse_lazy("users")
+    template_name = "users/delete.html"
+    success_message = _("success_delete_user_message")
 
 
 # Редактирование пользователей
-class UpdateUserView(View):
-    def get(self, request, *args, **kwargs):
-        user = get_object_or_404(User, id=kwargs.get('pk'))
-        form = UpdateUserForm(instance=user)
-        return render(request, 'users/update.html', {'form': form, "id": user.id})
+@only_owner_access_decorator("users")
+class UpdateUserView(
+        UnauthenticatedRedirectMixin,
+        SuccessMessageMixin,
+        UpdateView
+      ):
+    model = User
+    fields = ['first_name', 'last_name', 'username', ]
+    template_name = "users/update.html"
+    success_url = reverse_lazy("users")
+    success_message = _("success_update_user_message")
 
-    def post(self, request, *args, **kwargs):
-        user = get_object_or_404(User, id=kwargs.get('pk'))
-        form = UpdateUserForm(request.POST, instance=user)
-
-        if form.is_valid():
-            form.save()
-            return redirect('users')
-        return render(request, 'users/update.html', {'form': form, "id": user.id})

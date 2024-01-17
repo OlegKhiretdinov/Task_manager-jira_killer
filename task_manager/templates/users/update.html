@@ -5,7 +5,7 @@
 
 {% block main %}
     <h1>{% trans 'change_user' %}</h1>
-    <form action="{% url 'update_user' pk=id %}" method="post">
+    <form method="post">
         {% csrf_token %}
         {% bootstrap_form form %}
         {% translate 'change' as button_txt %}

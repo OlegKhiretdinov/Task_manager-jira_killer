@@ -9,7 +9,7 @@
     {% translate 'delete_user_text' %} {{full_user_name}}
     </p>
 
-    <form action="{% url 'delete_user' pk=id %}" method="post">
+    <form method="post">
         {% csrf_token %}
         {% translate 'delete_button' as button %}
         {% bootstrap_button button button_class="btn-danger" button_type="submit" %}

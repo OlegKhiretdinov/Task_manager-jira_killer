@@ -11,9 +11,10 @@
     {% block header %}
         {% include "navigation.html" %}
     {% endblock %}
-    <div class="container wrapper flex-grow-1 mt-3">
+    <main class="container wrapper flex-grow-1 mt-3">
+        {% bootstrap_messages %}
         {% block main %}{% endblock %}
-    </div>
+    </main>
     {% block footer %}
         {% include "footer.html" %}
     {% endblock %}
