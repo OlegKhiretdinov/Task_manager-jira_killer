@@ -1,38 +1,27 @@
-from django.shortcuts import render, redirect
-from django.views import View
 from django.contrib.auth.models import User
-from django.contrib import messages
 from django.utils.translation import gettext as _
-from django.views.generic.edit import UpdateView, DeleteView
+from django.views.generic.edit import UpdateView, DeleteView, CreateView
 from django.urls import reverse_lazy
 from django.contrib.messages.views import SuccessMessageMixin
+from django.views.generic.list import ListView
 
 from task_manager.users.forms import CreateUserForm
 from task_manager.utils import UnauthenticatedRedirectMixin, only_owner_access_decorator
 
 
 # Список пользователей
-class IndexView(View):
-    def get(self, request):
-        users_list = User.objects.all()
-        return render(request, 'users/index.html', {'users_list': users_list})
+class IndexView(ListView):
+    model = User
+    context_object_name = "users_list"
+    template_name = 'users/index.html'
 
 
 # Создание пользователя
-class CreateUserView(View):
-    def get(self, request, *args, **kwargs):
-        form = CreateUserForm()
-        return render(request, 'users/create.html', {'form': form})
-
-    def post(self, request, *args, **kwargs):
-        form = CreateUserForm(request.POST)
-
-        if form.is_valid():
-            form.save()
-            messages.success(request, _("success_signup_message"))
-            return redirect('login')
-
-        return render(request, 'users/create.html', {'form': form})
+class CreateUserView(SuccessMessageMixin, CreateView):
+    form_class = CreateUserForm
+    template_name = "users/create.html"
+    success_url = reverse_lazy("login")
+    success_message = _("success_signup_message")
 
 
 # Удаление пользователя
