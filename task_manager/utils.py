@@ -7,6 +7,7 @@ from django.shortcuts import redirect
 
 class UnauthenticatedRedirectMixin(LoginRequiredMixin):
     login_url = reverse_lazy("login")
+    redirect_field_name = None
 
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_authenticated:
