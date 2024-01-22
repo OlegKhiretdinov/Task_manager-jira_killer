@@ -31,6 +31,10 @@ DEBUG = os.getenv("DEBUG", "False") == "True"
 ALLOWED_HOSTS = ['0.0.0.0', "127.0.0.1", "webserver"]
 DATABASE_URL = os.getenv("DATABASE_URL", None)
 
+RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
+if RENDER_EXTERNAL_HOSTNAME:
+    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
+
 
 # Application definition
 
@@ -82,10 +86,11 @@ WSGI_APPLICATION = 'task_manager.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 if DATABASE_URL:
-    DATABASES = dj_database_url.config(
-        default=DATABASE_URL,
-        conn_max_age=600,
-    )
+    DATABASES = {
+        'default': dj_database_url.config(
+            default=DATABASE_URL,
+            conn_max_age=600,
+    )}
 else:
     DATABASES = {
         'default': {
