@@ -1,0 +1,38 @@
+{% extends "main_layout.html" %}
+{% load i18n %}
+{% block title %}{% translate 'Statuses' %}{% endblock %}
+{% load django_bootstrap5 %}
+
+{% block main %}
+    <h1>{% translate 'Statuses' %}</h1>
+
+    {% translate 'create_status' as link_text %}
+    {% url 'create_status' as link_url %}
+    {% bootstrap_button link_text button_type="link" href=link_url %}
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>{% translate 'id' %}</th>
+                <th>{% translate 'name' %}</th>
+                <th>{% translate 'creation_date' %}</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for status in statuses_list %}
+            <tr>
+                <td>{{status.id}}</td>
+                <td>{{status.name}}</td>
+                <td>{{status.created_at}}</td>
+                <td>
+                    <a href="{% url 'delete_status' status.id %}">{% translate 'remove' %}</a>
+                    <br />
+                    <a href="{% url 'update_status' status.id %}">{% translate 'change' %}</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+

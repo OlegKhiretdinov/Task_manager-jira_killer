@@ -4,14 +4,14 @@
 {% load django_bootstrap5 %}
 
 {% block main %}
-    <h1>{% translate 'deleting_user' %}</h1>
+    <h1>{% trans 'deleting_user' %}</h1>
     <p>
-    {% translate 'before_delete_text' %} {{user.get_full_name}}
+    {% translate 'delete_user_text' %} {{status.name}}
     </p>
 
     <form method="post">
         {% csrf_token %}
-        {% translate 'delete_button' as button %}
-        {% bootstrap_button button button_class="btn-danger" button_type="submit" %}
+        {% translate 'delete_button' as button_text %}
+        {% bootstrap_button button_text button_class="btn-danger" button_type="submit" %}
     </form>
 {% endblock %}

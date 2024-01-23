@@ -19,6 +19,9 @@
       {% endif %}
       {% if request.user.id %}
       <li class="nav-item">
+        <a class="nav-link" href="{% url 'statuses_list' %}">{% translate 'Statuses' %}</a>
+      </li>
+      <li class="nav-item">
         <form method="POST", action="{% url 'logout' %}">
           {% csrf_token %}
           <button class="btn btn-dangerbtn btn-danger">{% translate 'logout' %}</button>

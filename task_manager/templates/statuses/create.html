@@ -1,0 +1,14 @@
+{% extends "main_layout.html" %}
+{% load i18n %}
+{% block title %}{% translate 'create_status' %}{% endblock %}
+{% load django_bootstrap5 %}
+
+{% block main %}
+    <h1>{% translate 'create_status' %}</h1>
+    <form method="post">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        {% translate 'Create' as button_text %}
+        {% bootstrap_button button_text button_type="submit" %}
+    </form>
+{% endblock %}
