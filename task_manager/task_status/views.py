@@ -29,7 +29,7 @@ class CreateTaskStatusView(UnauthenticatedRedirectMixin, SuccessMessageMixin, Cr
 class UpdateTaskStatusView(UnauthenticatedRedirectMixin, SuccessMessageMixin, UpdateView):
     model = TaskStatusModel
     fields = ['name']
-    template_name = "statuses/create.html"
+    template_name = "statuses/update.html"
     success_url = reverse_lazy("statuses_list")
     success_message = _("success_update_status_message")
 
