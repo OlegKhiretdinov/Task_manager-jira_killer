@@ -38,11 +38,9 @@ class DeleteUserView(UnauthenticatedRedirectMixin, SuccessMessageMixin, DeleteVi
 class UpdateUserView(
         UnauthenticatedRedirectMixin,
         SuccessMessageMixin,
-        UpdateView
-      ):
+        UpdateView):
     model = User
     fields = ['first_name', 'last_name', 'username', ]
     template_name = "users/update.html"
     success_url = reverse_lazy("users")
     success_message = _("success_update_user_message")
-
