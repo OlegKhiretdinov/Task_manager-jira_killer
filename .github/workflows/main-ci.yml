@@ -20,7 +20,6 @@ jobs:
         pip install poetry
     - name: Build project
       run: |
-        make install
         make build
     - name: Lint
       run: make lint
