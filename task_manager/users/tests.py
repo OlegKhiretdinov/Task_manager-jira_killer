@@ -1,15 +1,32 @@
 from django.test import TestCase
 from django.contrib.auth.models import User
+from django.urls import reverse
 
 
-class UsersListTestCase(TestCase):
-    pass
+class TestSetUpMixin(TestCase):
+    def setUp(self):
+        self.user1 = User.objects.create_user("user1", "user1@mail.ru", "1234")
+        self.user2 = User.objects.create_user("user2", "user2@mail.ru", "1234")
+
+    # Не аваторизованных, при попытке изменить, редиректит на страницу логина
+    def check_unauthorized_response(self, response):
+        self.assertEqual(response.redirect_chain[0], (reverse('login'), 302))
+        self.assertContains(response, "Вы не авторизованы! Пожалуйста, выполните вход.")
+
+    # нельзя редактировать/удалять чужой профиль
+    def check_not_owner_user_edit(self, response):
+        self.assertEqual(response.redirect_chain[0], (reverse('users'), 302))
+        self.assertContains(response, "У вас нет прав для изменения другого пользователя.")
+
+    # успешное действия с профилем
+    def check_user_edit(self, response):
+        self.assertEqual(response.redirect_chain[0], (reverse('users'), 302))
 
 
 class CreateUserTestCase(TestCase):
     def test_create_user(self):
         response = self.client.post(
-            "/users/create/",
+            reverse("create_user"),
             {
                 'first_name': 'first_name',
                 'last_name': 'second_name',
@@ -19,69 +36,41 @@ class CreateUserTestCase(TestCase):
             },
             follow=True
         )
-        self.assertEqual(response.redirect_chain[0][0], '/login/')
-        self.assertEqual(response.redirect_chain[0][1], 302)
+        self.assertEqual(response.redirect_chain[0], (reverse('login'), 302))
         self.assertContains(response, "Пользователь успешно зарегистрирован")
 
 
-class DeleteUserTestCase(TestCase):
-    def setUp(self):
-        self.user1 = User.objects.create_user("user1", "user1@mail.ru", "1234")
-        self.user2 = User.objects.create_user("user2", "user2@mail.ru", "1234")
-
+class DeleteUserTestCase(TestSetUpMixin):
     #  удаление не авторизованным пользователем
     def test_delete_user_not_authorized(self):
-        response = self.client.post(f'/users/{self.user1.id}/delete/', follow=True)
-
-        self.assertEqual(response.redirect_chain[0][0], '/login/')
-        self.assertEqual(response.redirect_chain[0][1], 302)
-        self.assertContains(response, "Вы не авторизованы! Пожалуйста, выполните вход.")
+        response = self.client.post(reverse('delete_user', args=[self.user1.id]), follow=True)
+        self.check_unauthorized_response(response)
 
     # удаление не владельцем профиля
     def test_delete_user_not_owner(self):
         self.client.login(username="user1", password="1234")
-        response = self.client.post(f'/users/{self.user2.id}/delete/', follow=True)
-
-        self.assertEqual(response.redirect_chain[0][0], '/users/')
-        self.assertEqual(response.redirect_chain[0][1], 302)
-        self.assertContains(response, "У вас нет прав для изменения другого пользователя.")
+        response = self.client.post(reverse('delete_user', args=[self.user2.id]), follow=True)
+        self.check_not_owner_user_edit(response)
 
     # удаление владельцем профиля
     def test_delete_user(self):
         self.client.login(username="user2", password="1234")
-        response = self.client.post(f'/users/{self.user2.id}/delete/', follow=True)
-        self.assertEqual(response.redirect_chain[0][0], '/users/')
-        self.assertEqual(response.redirect_chain[0][1], 302)
+        response = self.client.post(reverse('delete_user', args=[self.user2.id]), follow=True)
+        self.check_user_edit(response)
         self.assertContains(response, "Пользователь успешно удалён")
 
 
-class UpdateUserTestCase(TestCase):
-    def setUp(self):
-        self.user1 = User.objects.create_user("user1", "user1@mail.ru", "1234")
-        self.user2 = User.objects.create_user("user2", "user2@mail.ru", "1234")
-
+class UpdateUserTestCase(TestSetUpMixin):
     #  Изменение профиля не авторизованным пользователем
     def test_delete_user_not_authorized(self):
-        response = self.client.post(f'/users/{self.user1.id}/update/', follow=True)
-
-        self.assertEqual(response.redirect_chain[0][0], '/login/')
-        self.assertEqual(response.redirect_chain[0][1], 302)
-        self.assertContains(response, "Вы не авторизованы! Пожалуйста, выполните вход.")
+        response = self.client.post(reverse('update_user', args=[self.user2.id]), follow=True)
+        self.check_unauthorized_response(response)
 
     # Изменение профиля не владельцем профиля
     def test_delete_user_not_owner(self):
         self.client.login(username="user1", password="1234")
-        response = self.client.post(f'/users/{self.user2.id}/update/', follow=True)
-
-        self.assertEqual(response.redirect_chain[0][0], '/users/')
-        self.assertEqual(response.redirect_chain[0][1], 302)
-        self.assertContains(response, "У вас нет прав для изменения другого пользователя.")
-
-    # Изменение профиля владельцем профиля
-    def test_delete_user(self):
-        self.client.login(username="user2", password="1234")
         response = self.client.post(
-            f'/users/{self.user2.id}/update/',
+            reverse('update_user', args=[self.user2.id]),
             {
                 'first_name': 'first_name',
                 'last_name': 'last_name',
@@ -89,6 +78,19 @@ class UpdateUserTestCase(TestCase):
             },
             follow=True
         )
-        self.assertEqual(response.redirect_chain[0][0], '/users/')
-        self.assertEqual(response.redirect_chain[0][1], 302)
+        self.check_not_owner_user_edit(response)
+
+    # Изменение профиля владельцем профиля
+    def test_delete_user(self):
+        self.client.login(username="user2", password="1234")
+        response = self.client.post(
+            reverse('update_user', args=[self.user2.id]),
+            {
+                'first_name': 'first_name',
+                'last_name': 'last_name',
+                'username': 'user2',
+            },
+            follow=True
+        )
+        self.check_user_edit(response)
         self.assertContains(response, "Пользователь успешно изменен")

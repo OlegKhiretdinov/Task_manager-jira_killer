@@ -17,3 +17,6 @@ lint:
 
 build:
 	./build.sh
+
+test:
+	poetry run python manage.py test
