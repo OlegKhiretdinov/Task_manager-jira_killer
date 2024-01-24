@@ -21,9 +21,8 @@ jobs:
       uses: snok/install-poetry@v1
     - name: Build project
       run: |
-        poetry shell
-        python manage.py collectstatic --no-input
-        python manage.py migrate
+        poetry run python manage.py collectstatic --no-input
+        poetry run python manage.py migrate
     - name: Lint
       run: make lint
     - name: Test
