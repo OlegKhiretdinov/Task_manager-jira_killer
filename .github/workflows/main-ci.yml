@@ -25,7 +25,4 @@ jobs:
     - name: Lint
       run: make lint
     - name: Test
-      env:
-        - SECRET_KEY: "1234"
-        - DEBUG: "True"
       run: make test
