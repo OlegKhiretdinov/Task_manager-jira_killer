@@ -19,8 +19,7 @@ build:
 	./build.sh
 
 test:
-	poetry run python manage.py test
+	poetry run coverage run manage.py test
 
 test-coverage:
-	coverage xml
-
+	coverage report xml
