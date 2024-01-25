@@ -22,6 +22,6 @@ test:
 	poetry run python manage.py test
 
 test-coverage:
-	coverage run manage.py test
-	coverage report xml
+	poetry run coverage run manage.py test
+	poetry run coverage report xml
 
