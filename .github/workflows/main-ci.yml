@@ -30,7 +30,7 @@ jobs:
         SECRET_KEY: "1234"
       run: make test
     - name: Test coverage
-    - uses: paambaati/codeclimate-action@v5
+      uses: paambaati/codeclimate-action@v5
       env:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
       with:
