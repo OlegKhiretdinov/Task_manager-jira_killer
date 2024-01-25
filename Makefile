@@ -22,5 +22,5 @@ test:
 	poetry run coverage run manage.py test
 
 test-coverage:
-	coverage run manage.py test
-	coverage xml
+	poetry run coverage run manage.py test
+	poetry run coverage xml --include=task_manager/* --omit=task_manager/settings.py
