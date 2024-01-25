@@ -21,6 +21,7 @@ psycopg2-binary = "^2.9.9"
 flake8 = "^6.1.0"
 django-extensions = "^3.2.3"
 ipython = "^8.20.0"
+coverage = "^7.4.0"
 
 [build-system]
 requires = ["poetry-core"]
