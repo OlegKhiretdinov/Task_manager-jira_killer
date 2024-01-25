@@ -1,7 +1,12 @@
 from django.test import TestCase
 from django.contrib.auth.models import User
 from django.urls import reverse
+from django.contrib.messages import get_messages
 
+
+def get_message_txt(response):
+    messages = list(get_messages(response.wsgi_request))
+    return str(messages[0])
 
 class TestSetUpMixin(TestCase):
     def setUp(self):
@@ -10,13 +15,14 @@ class TestSetUpMixin(TestCase):
 
     # Не аваторизованных, при попытке изменить, редиректит на страницу логина
     def check_unauthorized_response(self, response):
+        messages = list(get_messages(response.wsgi_request))
         self.assertEqual(response.redirect_chain[0], (reverse('login'), 302))
-        self.assertContains(response, "Вы не авторизованы! Пожалуйста, выполните вход.")
+        self.assertEqual(str(messages[0]), "Вы не авторизованы! Пожалуйста, выполните вход.")
 
     # нельзя редактировать/удалять чужой профиль
     def check_not_owner_user_edit(self, response):
         self.assertEqual(response.redirect_chain[0], (reverse('users'), 302))
-        self.assertContains(response, "У вас нет прав для изменения другого пользователя.")
+        self.assertEqual(get_message_txt(response), "У вас нет прав для изменения другого пользователя.")
 
     # успешное действия с профилем
     def check_user_edit(self, response):
@@ -37,7 +43,7 @@ class CreateUserTestCase(TestCase):
             follow=True
         )
         self.assertEqual(response.redirect_chain[0], (reverse('login'), 302))
-        self.assertContains(response, "Пользователь успешно зарегистрирован")
+        self.assertEqual(get_message_txt(response), "Пользователь успешно зарегистрирован")
 
 
 class DeleteUserTestCase(TestSetUpMixin):
@@ -57,7 +63,7 @@ class DeleteUserTestCase(TestSetUpMixin):
         self.client.login(username="user2", password="1234")
         response = self.client.post(reverse('delete_user', args=[self.user2.id]), follow=True)
         self.check_user_edit(response)
-        self.assertContains(response, "Пользователь успешно удалён")
+        self.assertEqual(get_message_txt(response), "Пользователь успешно удалён")
 
 
 class UpdateUserTestCase(TestSetUpMixin):
@@ -93,4 +99,4 @@ class UpdateUserTestCase(TestSetUpMixin):
             follow=True
         )
         self.check_user_edit(response)
-        self.assertContains(response, "Пользователь успешно изменен")
+        self.assertEqual(get_message_txt(response), "Пользователь успешно изменен")
