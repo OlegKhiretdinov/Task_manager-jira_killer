@@ -20,7 +20,8 @@ build:
 
 test:
 	poetry run coverage run manage.py test
+	poetry run coverage report -m --skip-covered
 
 test-coverage:
 	poetry run coverage run manage.py test
-	poetry run coverage xml --include=task_manager/* --omit=task_manager/settings.py
+	poetry run coverage xml --include=task_manager/*
