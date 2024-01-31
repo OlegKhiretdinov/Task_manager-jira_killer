@@ -8,6 +8,7 @@ def get_message_txt(response):
     messages = list(get_messages(response.wsgi_request))
     return str(messages[0])
 
+
 class TestSetUpMixin(TestCase):
     def setUp(self):
         self.user1 = User.objects.create_user("user1", "user1@mail.ru", "1234")
