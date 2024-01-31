@@ -4,9 +4,9 @@
 {% load django_bootstrap5 %}
 
 {% block main %}
-    <h1>{% trans 'deleting_status' %}</h1>
+    <h1>{% trans 'deleting_task' %}</h1>
     <p>
-    {% translate 'before_delete_text' %} {{status.name}}
+    {% translate 'before_delete_text' %} {{task.name}}
     </p>
 
     <form method="post">

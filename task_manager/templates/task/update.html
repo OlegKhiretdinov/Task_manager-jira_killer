@@ -1,0 +1,14 @@
+{% extends "main_layout.html" %}
+{% load i18n %}
+{% block title %}{% translate 'update_task' %}{% endblock %}
+{% load django_bootstrap5 %}
+
+{% block main %}
+    <h1>{% trans 'update_task' %}</h1>
+    <form method="post">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        {% translate 'change' as button_txt %}
+        {% bootstrap_button button_txt button_type="submit" %}
+    </form>
+{% endblock %}

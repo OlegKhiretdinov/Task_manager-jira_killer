@@ -1,12 +1,12 @@
 from django.contrib.auth.models import User
 from django.utils.translation import gettext as _
-from django.views.generic.edit import UpdateView, DeleteView, CreateView
+from django.views.generic.edit import UpdateView, CreateView
 from django.urls import reverse_lazy
 from django.contrib.messages.views import SuccessMessageMixin
 from django.views.generic.list import ListView
 
 from task_manager.users.forms import CreateUserForm
-from task_manager.utils import UnauthenticatedRedirectMixin, only_owner_access_decorator
+from task_manager.utils import UnauthenticatedRedirectMixin, OnlOwnerAccessMixin, DeleteProtectedEntityMixin
 
 
 # Список пользователей
@@ -25,18 +25,24 @@ class CreateUserView(SuccessMessageMixin, CreateView):
 
 
 # Удаление пользователя
-@only_owner_access_decorator("users")
-class DeleteUserView(UnauthenticatedRedirectMixin, SuccessMessageMixin, DeleteView):
+class DeleteUserView(UnauthenticatedRedirectMixin, OnlOwnerAccessMixin, SuccessMessageMixin, DeleteProtectedEntityMixin):
     model = User
     success_url = reverse_lazy("users")
     template_name = "users/delete.html"
     success_message = _("success_delete_user_message")
+    delete_protected_error_pathname = "users"
+    delete_protected_error_message = _("error_delete_used_user")
+    not_owner_redirect_path = "users"
+    not_owner_error_message = _("error_only_owner_edit_user")
+
+    def get_owner(self):
+        return self.get_object()
 
 
 # Редактирование пользователей
-@only_owner_access_decorator("users")
 class UpdateUserView(
         UnauthenticatedRedirectMixin,
+        OnlOwnerAccessMixin,
         SuccessMessageMixin,
         UpdateView):
     model = User
@@ -44,3 +50,8 @@ class UpdateUserView(
     template_name = "users/update.html"
     success_url = reverse_lazy("users")
     success_message = _("success_update_user_message")
+    not_owner_redirect_path = "users"
+    not_owner_error_message = _("error_only_owner_edit_user")
+
+    def get_owner(self):
+        return self.get_object()

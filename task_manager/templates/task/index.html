@@ -1,0 +1,46 @@
+{% extends "main_layout.html" %}
+{% load i18n %}
+{% block title %}{% translate 'Tasks' %}{% endblock %}
+{% load django_bootstrap5 %}
+
+{% block main %}
+    <h1>{% translate 'Tasks' %}</h1>
+
+    {% translate 'create_task' as link_text %}
+    {% url 'create_task' as link_url %}
+    {% bootstrap_button link_text button_type="link" href=link_url %}
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>{% translate 'id' %}</th>
+                <th>{% translate 'name' %}</th>
+                <th>{% translate 'Status' %}</th>
+                <th>{% translate 'Author' %}</th>
+                <th>{% translate 'executor' %}</th>
+                <th>{% translate 'creation_date' %}</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for task in tasks_list %}
+            <tr>
+                <td>{{task.id}}</td>
+                <td>
+                    <a href="{% url 'show_task' task.id %}">{{task.name}}</a>
+                </td>
+                <td>{{task.status}}</td>
+                <td>{{task.author}}</td>
+                <td>{{task.executor|default_if_none:""}}</td>
+                <td>{{task.created_at}}</td>
+                <td>
+                    <a href="{% url 'delete_task' task.id %}">{% translate 'remove' %}</a>
+                    <br />
+                    <a href="{% url 'update_task' task.id %}">{% translate 'change' %}</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+
