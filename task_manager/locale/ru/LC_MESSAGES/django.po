@@ -30,7 +30,7 @@ msgstr "Задача успешно изменена"
 
 #: task/views.py:42
 msgid "success_delete_task_message"
-msgstr "Задача успешно удалёна"
+msgstr "Задача успешно удалена"
 
 #: task/views.py:45
 msgid "error_only_owner_delete_task"
