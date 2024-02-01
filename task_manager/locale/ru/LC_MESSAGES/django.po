@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-01 13:43+0300\n"
+"POT-Creation-Date: 2024-02-01 13:54+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -82,6 +82,20 @@ msgstr "Создать Метку"
 msgid "Create"
 msgstr "Создать"
 
+#: templates/label/delete.html:3 templates/label/delete.html:7
+msgid "deleting_label"
+msgstr "Удаление метки"
+
+#: templates/label/delete.html:9 templates/statuses/delete.html:9
+#: templates/task/delete.html:9 templates/users/delete.html:9
+msgid "before_delete_text"
+msgstr "Вы уверены, что хотите удалить"
+
+#: templates/label/delete.html:14 templates/statuses/delete.html:14
+#: templates/task/delete.html:14 templates/users/delete.html:14
+msgid "delete_button"
+msgstr "Да, удалить"
+
 #: templates/label/index.html:3 templates/label/index.html:7
 #: templates/navigation.html:25
 msgid "Labels"
@@ -154,24 +168,9 @@ msgstr "Выход"
 msgid "create_status"
 msgstr "Создать статус"
 
-#: templates/statuses/delete.html:3 templates/task/delete.html:3
-#: templates/users/delete.html:3 templates/users/delete.html:7
-msgid "deleting_user"
-msgstr "Удаление пользователя"
-
-#: templates/statuses/delete.html:7
+#: templates/statuses/delete.html:3 templates/statuses/delete.html:7
 msgid "deleting_status"
 msgstr "Удаление статуса"
-
-#: templates/statuses/delete.html:9 templates/task/delete.html:9
-#: templates/users/delete.html:9
-msgid "before_delete_text"
-msgstr "Вы уверены, что хотите удалить"
-
-#: templates/statuses/delete.html:14 templates/task/delete.html:14
-#: templates/users/delete.html:14
-msgid "delete_button"
-msgstr "Да, удалить"
 
 #: templates/statuses/update.html:3 templates/statuses/update.html:7
 msgid "update_task_status"
@@ -180,6 +179,11 @@ msgstr "Изменение статуса"
 #: templates/task/create.html:7 templates/task/index.html:9
 msgid "create_task"
 msgstr "Создать задачу"
+
+#: templates/task/delete.html:3 templates/users/delete.html:3
+#: templates/users/delete.html:7
+msgid "deleting_user"
+msgstr "Удаление пользователя"
 
 #: templates/task/delete.html:7
 msgid "deleting_task"
