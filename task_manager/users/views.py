@@ -6,7 +6,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.views.generic.list import ListView
 
 from task_manager.users.forms import CreateUserForm
-from task_manager.utils import UnauthenticatedRedirectMixin, OnlOwnerAccessMixin, DeleteProtectedEntityMixin
+from task_manager.utils.utils import UnauthenticatedRedirectMixin, OnlOwnerAccessMixin, DeleteProtectedEntityMixin
 
 
 # Список пользователей

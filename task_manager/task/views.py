@@ -7,7 +7,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 
 from .models import Task
 from .forms import TaskCreateForm
-from task_manager.utils import UnauthenticatedRedirectMixin, OnlOwnerAccessMixin
+from task_manager.utils.utils import UnauthenticatedRedirectMixin, OnlOwnerAccessMixin
 
 
 class IndexView(UnauthenticatedRedirectMixin, ListView):

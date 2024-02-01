@@ -1,24 +1,14 @@
 from django.test import TestCase
 from django.contrib.auth.models import User
 from django.urls import reverse
-from django.contrib.messages import get_messages
+
+from task_manager.utils.test_utils import UnauthorizedTestMixin, get_message_txt
 
 
-def get_message_txt(response):
-    messages = list(get_messages(response.wsgi_request))
-    return str(messages[0])
-
-
-class TestSetUpMixin(TestCase):
+class TestSetUpMixin(UnauthorizedTestMixin):
     def setUp(self):
         self.user1 = User.objects.create_user("user1", "user1@mail.ru", "1234")
         self.user2 = User.objects.create_user("user2", "user2@mail.ru", "1234")
-
-    # Не аваторизованных, при попытке изменить, редиректит на страницу логина
-    def check_unauthorized_response(self, response):
-        messages = list(get_messages(response.wsgi_request))
-        self.assertEqual(response.redirect_chain[0], (reverse('login'), 302))
-        self.assertEqual(str(messages[0]), "Вы не авторизованы! Пожалуйста, выполните вход.")
 
     # нельзя редактировать/удалять чужой профиль
     def check_not_owner_user_edit(self, response):

@@ -1,12 +1,12 @@
-from django.test import TestCase
 from django.contrib.auth.models import User
 from django.urls import reverse
 
+from task_manager.utils.test_utils import UnauthorizedTestMixin
 from .models import Task
 from task_manager.task_status.models import TaskStatusModel
 
 
-class TestSetUpMixin(TestCase):
+class TestSetUpMixin(UnauthorizedTestMixin):
     def setUp(self):
         self.user = User.objects.create_user(username="user", password="1234")
         self.status = TaskStatusModel.objects.create(name="status")
@@ -15,10 +15,6 @@ class TestSetUpMixin(TestCase):
             author=self.user,
             status=self.status,
         )
-
-    def check_unauthorized_response(self, response):
-        self.assertEqual(response.redirect_chain[0], (reverse('login'), 302))
-        self.assertContains(response, "Вы не авторизованы! Пожалуйста, выполните вход.")
 
 
 class TaskListTestCase(TestSetUpMixin):
