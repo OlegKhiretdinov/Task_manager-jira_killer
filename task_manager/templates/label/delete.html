@@ -1,0 +1,17 @@
+{% extends "main_layout.html" %}
+{% load i18n %}
+{% block title %}{% translate 'deleting_label' %}{% endblock %}
+{% load django_bootstrap5 %}
+
+{% block main %}
+    <h1>{% trans 'deleting_label' %}</h1>
+    <p>
+    {% translate 'before_delete_text' %} {{status.name}}
+    </p>
+
+    <form method="post">
+        {% csrf_token %}
+        {% translate 'delete_button' as button_text %}
+        {% bootstrap_button button_text button_class="btn-danger" button_type="submit" %}
+    </form>
+{% endblock %}

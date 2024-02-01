@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-31 14:39+0300\n"
+"POT-Creation-Date: 2024-02-01 13:43+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,6 +19,22 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
 "(n%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: label/views.py:22
+msgid "success_create_label_message"
+msgstr "Метка успешно создана"
+
+#: label/views.py:30
+msgid "success_update_label_message"
+msgstr "Метка успешно изменена"
+
+#: label/views.py:37
+msgid "success_delete_label_message"
+msgstr "Метка успешно удалена"
+
+#: label/views.py:40
+msgid "error_delete_used_label"
+msgstr "Невозможно удалить метку, потому что он используется"
 
 #: task/views.py:23
 msgid "success_create_task_message"
@@ -56,6 +72,54 @@ msgstr "Невозможно удалить статус, потому что о
 msgid "Task_manager"
 msgstr "Менеджер задач"
 
+#: templates/label/create.html:3 templates/label/create.html:7
+#: templates/label/index.html:9
+msgid "create_label"
+msgstr "Создать Метку"
+
+#: templates/label/create.html:11 templates/statuses/create.html:11
+#: templates/task/create.html:11
+msgid "Create"
+msgstr "Создать"
+
+#: templates/label/index.html:3 templates/label/index.html:7
+#: templates/navigation.html:25
+msgid "Labels"
+msgstr "Метки"
+
+#: templates/label/index.html:16 templates/statuses/index.html:16
+#: templates/task/index.html:16 templates/users/index.html:11
+msgid "id"
+msgstr "ID"
+
+#: templates/label/index.html:17 templates/statuses/index.html:17
+#: templates/task/index.html:17
+msgid "name"
+msgstr "Имя"
+
+#: templates/label/index.html:18 templates/statuses/index.html:18
+#: templates/task/index.html:21 templates/task/show.html:29
+msgid "creation_date"
+msgstr "Дата создания"
+
+#: templates/label/index.html:29 templates/statuses/index.html:29
+#: templates/task/index.html:37 templates/task/show.html:44
+#: templates/users/index.html:26
+msgid "remove"
+msgstr "Удалить"
+
+#: templates/label/index.html:31 templates/label/update.html:11
+#: templates/statuses/index.html:31 templates/statuses/update.html:11
+#: templates/task/index.html:39 templates/task/show.html:46
+#: templates/task/update.html:11 templates/users/index.html:28
+#: templates/users/update.html:11
+msgid "change"
+msgstr "Изменить"
+
+#: templates/label/update.html:3 templates/label/update.html:7
+msgid "update_label"
+msgstr "Изменение метки"
+
 #: templates/navigation.html:10 templates/users/index.html:3
 #: templates/users/index.html:7
 msgid "Users"
@@ -76,12 +140,12 @@ msgstr "Регистрация"
 msgid "Statuses"
 msgstr "Статусы"
 
-#: templates/navigation.html:25 templates/task/index.html:3
+#: templates/navigation.html:28 templates/task/index.html:3
 #: templates/task/index.html:7
 msgid "Tasks"
 msgstr "Задачи"
 
-#: templates/navigation.html:30
+#: templates/navigation.html:33
 msgid "logout"
 msgstr "Выход"
 
@@ -89,10 +153,6 @@ msgstr "Выход"
 #: templates/statuses/index.html:9 templates/task/create.html:3
 msgid "create_status"
 msgstr "Создать статус"
-
-#: templates/statuses/create.html:11 templates/task/create.html:11
-msgid "Create"
-msgstr "Создать"
 
 #: templates/statuses/delete.html:3 templates/task/delete.html:3
 #: templates/users/delete.html:3 templates/users/delete.html:7
@@ -112,32 +172,6 @@ msgstr "Вы уверены, что хотите удалить"
 #: templates/users/delete.html:14
 msgid "delete_button"
 msgstr "Да, удалить"
-
-#: templates/statuses/index.html:16 templates/task/index.html:16
-#: templates/users/index.html:11
-msgid "id"
-msgstr "ID"
-
-#: templates/statuses/index.html:17 templates/task/index.html:17
-msgid "name"
-msgstr "Имя"
-
-#: templates/statuses/index.html:18 templates/task/index.html:21
-#: templates/task/show.html:29
-msgid "creation_date"
-msgstr "Дата создания"
-
-#: templates/statuses/index.html:29 templates/task/index.html:37
-#: templates/task/show.html:44 templates/users/index.html:26
-msgid "remove"
-msgstr "Удалить"
-
-#: templates/statuses/index.html:31 templates/statuses/update.html:11
-#: templates/task/index.html:39 templates/task/show.html:46
-#: templates/task/update.html:11 templates/users/index.html:28
-#: templates/users/update.html:11
-msgid "change"
-msgstr "Изменить"
 
 #: templates/statuses/update.html:3 templates/statuses/update.html:7
 msgid "update_task_status"
@@ -208,7 +242,7 @@ msgstr "Пользователь успешно удалён"
 msgid "error_delete_used_user"
 msgstr "Невозможно удалить пользователя, потому что он используется"
 
-#: users/views.py:36
+#: users/views.py:36 users/views.py:54
 msgid "error_only_owner_edit_user"
 msgstr "У вас нет прав для изменения другого пользователя."
 
@@ -216,15 +250,15 @@ msgstr "У вас нет прав для изменения другого по�
 msgid "success_update_user_message"
 msgstr "Пользователь успешно изменен"
 
-#: utils.py:16
+#: utils/utils.py:20
 msgid "error_unauthenticated_user_message"
 msgstr "Вы не авторизованы! Пожалуйста, выполните вход."
 
-#: utils.py:22
+#: utils/utils.py:30
 msgid "error_only_owner_access_message"
 msgstr ""
 
-#: utils.py:40
+#: utils/utils.py:49
 msgid "delete_protected_error_message"
 msgstr ""
 
