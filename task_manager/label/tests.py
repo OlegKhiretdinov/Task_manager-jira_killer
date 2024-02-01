@@ -31,7 +31,7 @@ class LabelCreateTestCase(TestSetUpMixin):
         self.client.login(username="user", password="1234")
         response = self.client.post(reverse('create_label'), {'name': 'label name'}, follow=True)
         self.assertEqual(response.redirect_chain[0], (reverse('labels_list'), 302))
-        self.assertContains(response, "Метка успешно создана")
+        self.assertEqual(get_message_txt(response), "Метка успешно создана")
 
 
 class LabelUpdateTestCase(TestSetUpMixin):
@@ -49,7 +49,7 @@ class LabelUpdateTestCase(TestSetUpMixin):
             {'name': 'New label name'},
             follow=True)
         self.assertEqual(response.redirect_chain[0], (reverse('labels_list'), 302))
-        self.assertContains(response, "Метка успешно изменена")
+        self.assertEqual(get_message_txt(response), "Метка успешно изменена")
 
 
 class TaskStatusDeleteTestCase(TestSetUpMixin):
@@ -61,4 +61,4 @@ class TaskStatusDeleteTestCase(TestSetUpMixin):
         self.client.login(username="user", password="1234")
         response = self.client.post(reverse('delete_label', args=[self.label.id]), follow=True)
         self.assertEqual(response.redirect_chain[0], (reverse('labels_list'), 302))
-        self.assertContains(response, "Метка успешно удалёна")
+        self.assertEqual(get_message_txt(response), "Метка успешно удалена")

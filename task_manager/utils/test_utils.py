@@ -10,6 +10,5 @@ def get_message_txt(response):
 
 class UnauthorizedTestMixin(TestCase):
     def check_unauthorized_response(self, response):
-        messages = list(get_messages(response.wsgi_request))
         self.assertEqual(response.redirect_chain[0], (reverse('login'), 302))
-        self.assertEqual(str(messages[0]), "Вы не авторизованы! Пожалуйста, выполните вход.")
+        self.assertEqual(get_message_txt(response), "Вы не авторизованы! Пожалуйста, выполните вход.")

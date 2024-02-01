@@ -2,7 +2,7 @@ from task_manager.task_status.models import TaskStatusModel
 from django.contrib.auth.models import User
 from django.urls import reverse
 
-from task_manager.utils.test_utils import UnauthorizedTestMixin
+from task_manager.utils.test_utils import UnauthorizedTestMixin, get_message_txt
 
 
 class TestSetUpMixin(UnauthorizedTestMixin):
@@ -39,7 +39,7 @@ class TaskStatusCreateTestCase(TestSetUpMixin):
         self.client.login(username="user", password="1234")
         response = self.client.post(reverse('create_status'), {'name': 'status name'}, follow=True)
         self.check_success_status_redirect(response)
-        self.assertContains(response, "Статус успешно создан")
+        self.assertEqual(get_message_txt(response), "Статус успешно создан")
 
 
 class TaskStatusUpdateTestCase(TestSetUpMixin):
@@ -58,7 +58,7 @@ class TaskStatusUpdateTestCase(TestSetUpMixin):
             {'name': 'new status name'},
             follow=True)
         self.check_success_status_redirect(response)
-        self.assertContains(response, "Статус успешно изменен")
+        self.assertEqual(get_message_txt(response), "Статус успешно изменен")
 
 
 class TaskStatusDeleteTestCase(TestSetUpMixin):
@@ -76,4 +76,4 @@ class TaskStatusDeleteTestCase(TestSetUpMixin):
             reverse('delete_status', args=[self.status.id]),
             follow=True)
         self.check_success_status_redirect(response)
-        self.assertContains(response, "Статус успешно удалён")
+        self.assertEqual(get_message_txt(response), "Статус успешно удалён")

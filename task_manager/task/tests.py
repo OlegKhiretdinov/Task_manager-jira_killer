@@ -50,7 +50,6 @@ class CreateTaskTestCase(TestSetUpMixin):
                 'description': 'Task description'
             },
             follow=True)
-        print(response)
         self.assertEqual(response.redirect_chain[0], (reverse('tasks_list'), 302))
         self.assertContains(response, "Задача успешно создана")
 
