@@ -23,5 +23,8 @@ class Task(models.Model):
 
 
 class TaskLabelRelation(models.Model):
+    """
+    запрет на удаление метки если связана с задачей
+    """
     label = models.ForeignKey(LabelModel, on_delete=models.PROTECT)
     task = models.ForeignKey(Task, on_delete=models.CASCADE)

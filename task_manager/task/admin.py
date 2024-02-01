@@ -1,4 +1,14 @@
 from django.contrib import admin
-from .models import Task
+from .models import Task, TaskLabelRelation
 
-admin.site.register(Task)
+
+class TaskLabelRelationInline(admin.TabularInline):
+    model = TaskLabelRelation
+    extra = 1
+
+
+class TaskAdmin(admin.ModelAdmin):
+    inlines = [TaskLabelRelationInline]
+
+
+admin.site.register(Task, TaskAdmin)
