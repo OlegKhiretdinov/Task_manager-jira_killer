@@ -29,7 +29,7 @@ class CreateTaskView(UnauthenticatedRedirectMixin, SuccessMessageMixin, CreateVi
 
 class UpdateTaskView(UnauthenticatedRedirectMixin, SuccessMessageMixin, UpdateView):
     model = Task
-    fields = ['name', 'description', 'executor', 'status']
+    fields = ['name', 'description', 'executor', 'status', 'labels']
     template_name = "task/update.html"
     success_url = reverse_lazy("tasks_list")
     success_message = _("success_update_task_message")

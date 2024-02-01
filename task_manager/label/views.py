@@ -36,5 +36,5 @@ class DeleteLabelView(UnauthenticatedRedirectMixin, SuccessMessageMixin, DeleteP
     success_url = reverse_lazy("labels_list")
     success_message = _("success_delete_label_message")
     context_object_name = "label"
-    delete_protected_error_pathname = "statuses_list"
+    delete_protected_error_pathname = "labels_list"
     delete_protected_error_message = _("error_delete_used_label")

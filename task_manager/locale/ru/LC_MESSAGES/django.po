@@ -34,7 +34,7 @@ msgstr "Метка успешно удалена"
 
 #: label/views.py:40
 msgid "error_delete_used_label"
-msgstr "Невозможно удалить метку, потому что он используется"
+msgstr "Невозможно удалить метку, потому что она используется"
 
 #: task/views.py:23
 msgid "success_create_task_message"

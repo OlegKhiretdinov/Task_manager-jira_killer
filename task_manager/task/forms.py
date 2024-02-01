@@ -5,4 +5,4 @@ from .models import Task
 class TaskCreateForm(ModelForm):
     class Meta:
         model = Task
-        fields = ['name', 'description', 'executor', 'status']
+        fields = ['name', 'description', 'executor', 'status', 'labels']
