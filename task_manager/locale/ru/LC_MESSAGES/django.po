@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-01 13:54+0300\n"
+"POT-Creation-Date: 2024-02-02 15:06+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -36,19 +36,27 @@ msgstr "Метка успешно удалена"
 msgid "error_delete_used_label"
 msgstr "Невозможно удалить метку, потому что она используется"
 
-#: task/views.py:23
+#: task/views.py:27
+msgid "Label"
+msgstr "Метка"
+
+#: task/views.py:29
+msgid "only_your_own_tasks"
+msgstr "Только свои задачи"
+
+#: task/views.py:52
 msgid "success_create_task_message"
 msgstr "Задача успешно создана"
 
-#: task/views.py:35
+#: task/views.py:64
 msgid "success_update_task_message"
 msgstr "Задача успешно изменена"
 
-#: task/views.py:42
+#: task/views.py:71
 msgid "success_delete_task_message"
 msgstr "Задача успешно удалена"
 
-#: task/views.py:45
+#: task/views.py:74
 msgid "error_only_owner_delete_task"
 msgstr "Задачу может удалить только ее автор"
 
@@ -102,29 +110,29 @@ msgid "Labels"
 msgstr "Метки"
 
 #: templates/label/index.html:16 templates/statuses/index.html:16
-#: templates/task/index.html:16 templates/users/index.html:11
+#: templates/task/index.html:25 templates/users/index.html:11
 msgid "id"
 msgstr "ID"
 
 #: templates/label/index.html:17 templates/statuses/index.html:17
-#: templates/task/index.html:17
+#: templates/task/index.html:26
 msgid "name"
 msgstr "Имя"
 
 #: templates/label/index.html:18 templates/statuses/index.html:18
-#: templates/task/index.html:21 templates/task/show.html:29
+#: templates/task/index.html:30 templates/task/show.html:29
 msgid "creation_date"
 msgstr "Дата создания"
 
 #: templates/label/index.html:29 templates/statuses/index.html:29
-#: templates/task/index.html:37 templates/task/show.html:44
+#: templates/task/index.html:46 templates/task/show.html:44
 #: templates/users/index.html:26
 msgid "remove"
 msgstr "Удалить"
 
 #: templates/label/index.html:31 templates/label/update.html:11
 #: templates/statuses/index.html:31 templates/statuses/update.html:11
-#: templates/task/index.html:39 templates/task/show.html:46
+#: templates/task/index.html:48 templates/task/show.html:46
 #: templates/task/update.html:11 templates/users/index.html:28
 #: templates/users/update.html:11
 msgid "change"
@@ -189,15 +197,19 @@ msgstr "Удаление пользователя"
 msgid "deleting_task"
 msgstr "Удаление задачи"
 
-#: templates/task/index.html:18 templates/task/show.html:25
+#: templates/task/index.html:16
+msgid "show"
+msgstr "Показать"
+
+#: templates/task/index.html:27 templates/task/show.html:25
 msgid "Status"
 msgstr "Статусы"
 
-#: templates/task/index.html:19 templates/task/show.html:17
+#: templates/task/index.html:28 templates/task/show.html:17
 msgid "Author"
 msgstr "Автор"
 
-#: templates/task/index.html:20 templates/task/show.html:21
+#: templates/task/index.html:29 templates/task/show.html:21
 msgid "executor"
 msgstr "Исполнатель"
 

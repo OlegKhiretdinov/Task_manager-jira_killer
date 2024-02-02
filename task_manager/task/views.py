@@ -1,19 +1,48 @@
-from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.detail import DetailView
 from django.urls import reverse_lazy
 from django.utils.translation import gettext as _
 from django.contrib.messages.views import SuccessMessageMixin
+from django_filters.views import FilterView
+from django_filters import FilterSet
+from django_filters.filters import ModelChoiceFilter, BooleanFilter
+from django.forms import CheckboxInput
 
 from .models import Task
 from .forms import TaskCreateForm
 from task_manager.utils.utils import UnauthenticatedRedirectMixin, OnlOwnerAccessMixin
+from task_manager.label.models import LabelModel
 
 
-class IndexView(UnauthenticatedRedirectMixin, ListView):
+def get_labels(query):
+    return LabelModel.objects.all()
+
+
+class TaskFilterView(FilterSet):
+    """
+    фильтр задач
+    поле labels заменено с мультиселекта на просто селект
+    добавлен чекбокс 'только своои задачи'
+    """
+    labels = ModelChoiceFilter(queryset=get_labels, label=_('Label'))
+
+    only_own_tasks = BooleanFilter(method='get_user_task', label=_('only_your_own_tasks'), widget=CheckboxInput)
+
+    def get_user_task(self, queryset, name, value):
+        if not value:
+            return queryset
+        return queryset.filter(author=self.request.user)
+
+    class Meta:
+        model = Task
+        fields = ['status', 'executor']
+
+
+class IndexView(UnauthenticatedRedirectMixin, FilterView):
     model = Task
     context_object_name = "tasks_list"
     template_name = 'task/index.html'
+    filterset_class = TaskFilterView
 
 
 class CreateTaskView(UnauthenticatedRedirectMixin, SuccessMessageMixin, CreateView):

@@ -9,6 +9,15 @@
     {% translate 'create_task' as link_text %}
     {% url 'create_task' as link_url %}
     {% bootstrap_button link_text button_type="link" href=link_url %}
+    <div class="card my-3">
+        <div class="card-body bg-light">
+            <form action="" method="get">
+                {% bootstrap_form filter.form %}
+                {% translate 'show' as button_text %}
+                {% bootstrap_button button_text button_type="submit" %}
+            </form>
+        </div>
+    </div>
 
     <table class="table table-striped">
         <thead>
