@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-02 15:06+0300\n"
+"POT-Creation-Date: 2024-02-02 15:25+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -35,6 +35,28 @@ msgstr "Метка успешно удалена"
 #: label/views.py:40
 msgid "error_delete_used_label"
 msgstr "Невозможно удалить метку, потому что она используется"
+
+#: task/models.py:10 templates/label/index.html:17
+#: templates/statuses/index.html:17 templates/task/index.html:26
+msgid "name"
+msgstr "Имя"
+
+#: task/models.py:12 templates/task/index.html:28 templates/task/show.html:17
+msgid "author"
+msgstr "Автор"
+
+#: task/models.py:13 templates/task/index.html:29 templates/task/show.html:21
+msgid "executor"
+msgstr "Исполнитель"
+
+#: task/models.py:14 templates/task/index.html:27 templates/task/show.html:25
+msgid "status"
+msgstr "Статус"
+
+#: task/models.py:21 templates/label/index.html:3 templates/label/index.html:7
+#: templates/navigation.html:25
+msgid "Labels"
+msgstr "Метки"
 
 #: task/views.py:27
 msgid "Label"
@@ -104,20 +126,10 @@ msgstr "Вы уверены, что хотите удалить"
 msgid "delete_button"
 msgstr "Да, удалить"
 
-#: templates/label/index.html:3 templates/label/index.html:7
-#: templates/navigation.html:25
-msgid "Labels"
-msgstr "Метки"
-
 #: templates/label/index.html:16 templates/statuses/index.html:16
 #: templates/task/index.html:25 templates/users/index.html:11
 msgid "id"
 msgstr "ID"
-
-#: templates/label/index.html:17 templates/statuses/index.html:17
-#: templates/task/index.html:26
-msgid "name"
-msgstr "Имя"
 
 #: templates/label/index.html:18 templates/statuses/index.html:18
 #: templates/task/index.html:30 templates/task/show.html:29
@@ -201,18 +213,6 @@ msgstr "Удаление задачи"
 msgid "show"
 msgstr "Показать"
 
-#: templates/task/index.html:27 templates/task/show.html:25
-msgid "Status"
-msgstr "Статусы"
-
-#: templates/task/index.html:28 templates/task/show.html:17
-msgid "Author"
-msgstr "Автор"
-
-#: templates/task/index.html:29 templates/task/show.html:21
-msgid "executor"
-msgstr "Исполнатель"
-
 #: templates/task/show.html:3 templates/task/update.html:3
 #: templates/task/update.html:7
 msgid "update_task"
@@ -285,3 +285,6 @@ msgstr "Вы разлогинены"
 #: views.py:19
 msgid "success_login_message"
 msgstr "Вы залогинены"
+
+#~ msgid "labels"
+#~ msgstr "Метки"
