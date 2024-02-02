@@ -24,9 +24,9 @@ class TaskFilterView(FilterSet):
     поле labels заменено с мультиселекта на просто селект
     добавлен чекбокс 'только своои задачи'
     """
-    labels = ModelChoiceFilter(queryset=get_labels, label=_('Label'))
+    label = ModelChoiceFilter(queryset=get_labels, label=_('Label'), field_name="labels")
 
-    only_own_tasks = BooleanFilter(method='get_user_task', label=_('only_your_own_tasks'), widget=CheckboxInput)
+    self_tasks = BooleanFilter(method='get_user_task', label=_('only_your_own_tasks'), widget=CheckboxInput)
 
     def get_user_task(self, queryset, name, value):
         if not value:
