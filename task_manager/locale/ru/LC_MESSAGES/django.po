@@ -92,7 +92,7 @@ msgstr "Статус успешно изменен"
 
 #: task_status/views.py:41
 msgid "success_delete_status_message"
-msgstr "Статус успешно удалён"
+msgstr "Статус успешно удален"
 
 #: task_status/views.py:44
 msgid "error_delete_used_status"
@@ -252,7 +252,7 @@ msgstr "Пользователь успешно зарегистрирован"
 
 #: users/views.py:32
 msgid "success_delete_user_message"
-msgstr "Пользователь успешно удалён"
+msgstr "Пользователь успешно удален"
 
 #: users/views.py:34
 msgid "error_delete_used_user"
