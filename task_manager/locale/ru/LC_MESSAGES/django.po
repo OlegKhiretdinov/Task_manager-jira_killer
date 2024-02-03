@@ -105,7 +105,7 @@ msgstr "Менеджер задач"
 #: templates/label/create.html:3 templates/label/create.html:7
 #: templates/label/index.html:9
 msgid "create_label"
-msgstr "Создать Метку"
+msgstr "Создать метку"
 
 #: templates/label/create.html:11 templates/statuses/create.html:11
 #: templates/task/create.html:11

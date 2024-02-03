@@ -54,7 +54,7 @@ class DeleteUserTestCase(TestSetUpMixin):
         self.client.login(username="user2", password="1234")
         response = self.client.post(reverse('delete_user', args=[self.user2.id]), follow=True)
         self.check_user_edit(response)
-        self.assertEqual(get_message_txt(response), "Пользователь успешно удалён")
+        self.assertEqual(get_message_txt(response), "Пользователь успешно удален")
 
 
 class UpdateUserTestCase(TestSetUpMixin):
