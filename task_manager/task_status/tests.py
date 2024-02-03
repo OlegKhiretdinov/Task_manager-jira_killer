@@ -76,4 +76,4 @@ class TaskStatusDeleteTestCase(TestSetUpMixin):
             reverse('delete_status', args=[self.status.id]),
             follow=True)
         self.check_success_status_redirect(response)
-        self.assertEqual(get_message_txt(response), "Статус успешно удалён")
+        self.assertEqual(get_message_txt(response), "Статус успешно удален")
