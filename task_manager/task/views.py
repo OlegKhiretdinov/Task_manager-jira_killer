@@ -26,7 +26,11 @@ class TaskFilterView(FilterSet):
     """
     label = ModelChoiceFilter(queryset=get_labels, label=_('Label'), field_name="labels")
 
-    self_tasks = BooleanFilter(method='get_user_task', label=_('only_your_own_tasks'), widget=CheckboxInput)
+    self_tasks = BooleanFilter(
+        method='get_user_task',
+        label=_('only_your_own_tasks'),
+        widget=CheckboxInput
+    )
 
     def get_user_task(self, queryset, name, value):
         if not value:
@@ -64,7 +68,12 @@ class UpdateTaskView(UnauthenticatedRedirectMixin, SuccessMessageMixin, UpdateVi
     success_message = _("success_update_task_message")
 
 
-class DeleteTaskView(UnauthenticatedRedirectMixin, OnlOwnerAccessMixin, SuccessMessageMixin, DeleteView):
+class DeleteTaskView(
+    UnauthenticatedRedirectMixin,
+    OnlOwnerAccessMixin,
+    SuccessMessageMixin,
+    DeleteView
+):
     model = Task
     template_name = "task/delete.html"
     success_url = reverse_lazy("tasks_list")

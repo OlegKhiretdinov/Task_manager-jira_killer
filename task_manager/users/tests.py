@@ -13,7 +13,10 @@ class TestSetUpMixin(UnauthorizedTestMixin):
     # нельзя редактировать/удалять чужой профиль
     def check_not_owner_user_edit(self, response):
         self.assertEqual(response.redirect_chain[0], (reverse('users'), 302))
-        self.assertEqual(get_message_txt(response), "У вас нет прав для изменения другого пользователя.")
+        self.assertEqual(
+            get_message_txt(response),
+            "У вас нет прав для изменения другого пользователя."
+        )
 
     # успешное действия с профилем
     def check_user_edit(self, response):

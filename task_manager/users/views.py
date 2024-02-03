@@ -6,7 +6,8 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.views.generic.list import ListView
 
 from task_manager.users.forms import CreateUserForm
-from task_manager.utils.utils import UnauthenticatedRedirectMixin, OnlOwnerAccessMixin, DeleteProtectedEntityMixin
+from task_manager.utils.utils import UnauthenticatedRedirectMixin, OnlOwnerAccessMixin, \
+    DeleteProtectedEntityMixin
 
 
 User = get_user_model()
@@ -29,7 +30,12 @@ class CreateUserView(SuccessMessageMixin, CreateView):
 
 
 # Удаление пользователя
-class DeleteUserView(UnauthenticatedRedirectMixin, OnlOwnerAccessMixin, SuccessMessageMixin, DeleteProtectedEntityMixin):
+class DeleteUserView(
+    UnauthenticatedRedirectMixin,
+    OnlOwnerAccessMixin,
+    SuccessMessageMixin,
+    DeleteProtectedEntityMixin
+):
     model = User
     success_url = reverse_lazy("users")
     template_name = "users/delete.html"

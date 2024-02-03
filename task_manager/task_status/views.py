@@ -34,7 +34,11 @@ class UpdateTaskStatusView(UnauthenticatedRedirectMixin, SuccessMessageMixin, Up
 
 
 # Удаления статуса
-class DeleteTaskStatusView(UnauthenticatedRedirectMixin, SuccessMessageMixin, DeleteProtectedEntityMixin):
+class DeleteTaskStatusView(
+    UnauthenticatedRedirectMixin,
+    SuccessMessageMixin,
+    DeleteProtectedEntityMixin
+):
     model = TaskStatusModel
     template_name = "statuses/delete.html"
     success_url = reverse_lazy("statuses_list")

@@ -10,7 +10,14 @@ class TestSetUpMixin(TestCase):
 
 class UserLoginTestCase(TestSetUpMixin):
     def test_login(self):
-        response = self.client.post(reverse("login"), {'username': 'user', 'password': '1234'}, follow=True)
+        response = self.client.post(
+            reverse("login"),
+            {
+                'username': 'user',
+                'password': '1234'
+            },
+            follow=True
+        )
         self.assertEqual(response.redirect_chain[0], ('/', 302))
         self.assertContains(response, "Вы залогинены")
 

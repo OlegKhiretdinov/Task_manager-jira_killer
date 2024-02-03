@@ -30,7 +30,11 @@ class UpdateLabelView(UnauthenticatedRedirectMixin, SuccessMessageMixin, UpdateV
     success_message = _("success_update_label_message")
 
 
-class DeleteLabelView(UnauthenticatedRedirectMixin, SuccessMessageMixin, DeleteProtectedEntityMixin):
+class DeleteLabelView(
+    UnauthenticatedRedirectMixin,
+    SuccessMessageMixin,
+    DeleteProtectedEntityMixin
+):
     model = LabelModel
     template_name = "label/delete.html"
     success_url = reverse_lazy("labels_list")
