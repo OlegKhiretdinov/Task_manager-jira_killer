@@ -9,8 +9,8 @@ from task_manager.label.models import LabelModel
 class Task(models.Model):
     name = models.CharField(max_length=255, verbose_name=_('name'))
     description = models.TextField(verbose_name=_('description'))
-    author = models.ForeignKey(User, on_delete=models.PROTECT, related_name="+", verbose_name=_('author'))
-    executor = models.ForeignKey(User, on_delete=models.PROTECT, related_name="+", blank=True, null=True, verbose_name=_('executor'))
+    author = models.ForeignKey(User, on_delete=models.PROTECT, related_name="user_task", verbose_name=_('author'))
+    executor = models.ForeignKey(User, on_delete=models.PROTECT, blank=True, null=True, verbose_name=_('executor'))
     status = models.ForeignKey(TaskStatusModel, on_delete=models.PROTECT, verbose_name=_('status'))
     created_at = models.DateTimeField(auto_now_add=True)
     labels = models.ManyToManyField(
