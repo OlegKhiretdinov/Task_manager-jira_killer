@@ -1,4 +1,4 @@
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from django.utils.translation import gettext as _
 from django.views.generic.edit import UpdateView, CreateView
 from django.urls import reverse_lazy
@@ -7,6 +7,9 @@ from django.views.generic.list import ListView
 
 from task_manager.users.forms import CreateUserForm
 from task_manager.utils.utils import UnauthenticatedRedirectMixin, OnlOwnerAccessMixin, DeleteProtectedEntityMixin
+
+
+User = get_user_model()
 
 
 # Список пользователей
@@ -18,6 +21,7 @@ class IndexView(ListView):
 
 # Создание пользователя
 class CreateUserView(SuccessMessageMixin, CreateView):
+    model = User
     form_class = CreateUserForm
     template_name = "users/create.html"
     success_url = reverse_lazy("login")

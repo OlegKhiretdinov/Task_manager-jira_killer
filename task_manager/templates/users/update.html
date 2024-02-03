@@ -8,6 +8,10 @@
     <form method="post">
         {% csrf_token %}
         {% bootstrap_form form %}
+        <div class="mb-3"><label class="form-label" for="id_password1">Пароль</label><input type="password" name="password1" autocomplete="new-password" class="form-control" placeholder="Пароль" required="" id="id_password1"><div class="form-text"><ul><li>Ваш пароль должен содержать как минимум 3 символа.</li></ul></div>
+</div>
+        <div class="mb-3"><label class="form-label" for="id_password2">Подтверждение пароля</label><input type="password" name="password2" autocomplete="new-password" class="form-control" placeholder="Подтверждение пароля" required="" id="id_password2"><div class="form-text">Для подтверждения введите, пожалуйста, пароль ещё раз.</div>
+</div>
         {% translate 'change' as button_txt %}
         {% bootstrap_button button_txt button_type="submit" %}
     </form>
