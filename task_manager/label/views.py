@@ -6,7 +6,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 
 from .models import LabelModel
 from .forms import LabelCreateForm
-from task_manager.utils.utils import UnauthenticatedRedirectMixin, DeleteProtectedEntityMixin
+from task_manager.utils.mixins import UnauthenticatedRedirectMixin, DeleteProtectedEntityMixin
 
 
 class IndexView(UnauthenticatedRedirectMixin, ListView):

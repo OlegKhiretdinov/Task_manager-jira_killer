@@ -6,7 +6,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 
 from task_manager.task_status.models import TaskStatusModel
 from task_manager.task_status.forms import TaskStatusCreateForm
-from task_manager.utils.utils import UnauthenticatedRedirectMixin, DeleteProtectedEntityMixin
+from task_manager.utils.mixins import UnauthenticatedRedirectMixin, DeleteProtectedEntityMixin
 
 
 # список статусов

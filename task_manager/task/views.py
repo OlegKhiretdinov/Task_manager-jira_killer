@@ -10,12 +10,8 @@ from django.forms import CheckboxInput
 
 from .models import Task
 from .forms import TaskCreateForm
-from task_manager.utils.utils import UnauthenticatedRedirectMixin, OnlOwnerAccessMixin
+from task_manager.utils.mixins import UnauthenticatedRedirectMixin, OnlOwnerAccessMixin
 from task_manager.label.models import LabelModel
-
-
-def get_labels(query):
-    return LabelModel.objects.all()
 
 
 class TaskFilterView(FilterSet):
@@ -24,7 +20,11 @@ class TaskFilterView(FilterSet):
     поле labels заменено с мультиселекта на просто селект
     добавлен чекбокс 'только своои задачи'
     """
-    label = ModelChoiceFilter(queryset=get_labels, label=_('Label'), field_name="labels")
+    label = ModelChoiceFilter(
+        queryset=lambda query: LabelModel.objects.all(),
+        label=_('Label'),
+        field_name="labels"
+    )
 
     self_tasks = BooleanFilter(
         method='get_user_task',
