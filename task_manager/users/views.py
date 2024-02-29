@@ -4,10 +4,11 @@ from django.views.generic.edit import UpdateView, CreateView
 from django.urls import reverse_lazy
 from django.contrib.messages.views import SuccessMessageMixin
 from django.views.generic.list import ListView
-
+from rest_framework import viewsets, permissions
 from task_manager.users.forms import CreateUserForm
 from task_manager.utils.mixins import UnauthenticatedRedirectMixin, OnlOwnerAccessMixin, \
     DeleteProtectedEntityMixin
+from task_manager.users.serializers import UserSerializer
 
 
 User = get_user_model()
@@ -18,6 +19,12 @@ class IndexView(ListView):
     model = User
     context_object_name = "users_list"
     template_name = 'users/index.html'
+
+
+class UsersListAPI(viewsets.ModelViewSet):
+    queryset = User.objects.all().order_by('username')
+    serializer_class = UserSerializer
+    permission_classes = [permissions.BasePermission]
 
 
 # Создание пользователя
